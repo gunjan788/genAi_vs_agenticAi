@@ -1,8 +1,8 @@
 import streamlit as st
 import requests
 
-#  API KEY
-API_KEY = "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"
+# 🔑 API KEY
+API_KEY = "sk-or-v1-0080433114a9e7fad3a4cd112c5aeda77ad5a70892de87f4dc4bcf19dbf940e8Y"
 
 url = "https://openrouter.ai/api/v1/chat/completions"
 
@@ -30,50 +30,72 @@ def call_llm(prompt):
         return f"Error: {response.text}"
 
 
-#  UI START
-st.set_page_config(page_title="GenAI vs Agentic AI", layout="centered")
+# 🌐 PAGE CONFIG
+st.set_page_config(page_title="GenAI vs Agentic AI", layout="wide")
 
-st.title("🤖 GenAI vs Agentic AI Demo")
+# 🎯 HEADER
+st.title("🤖 GenAI vs Agentic AI")
+st.markdown("### 🚀 From Response Generation to Intelligent Reasoning")
+st.divider()
 
-topic = st.text_input("Enter your topic:")
+# 📥 INPUT
+topic = st.text_input("💡 Enter your topic:")
 
 if st.button("Generate"):
-    
+
     if topic.strip() == "":
         st.warning("Please enter a topic!")
     else:
 
-        #  GEN AI
-        st.subheader("🔹 GenAI Output")
-        genai_prompt = f"Explain {topic} in 5-6 lines."
-        genai_result = call_llm(genai_prompt)
-        st.write(genai_result)
+        with st.spinner("Thinking... 🤔"):
 
-        #  AGENTIC AI
-        st.subheader(" Agentic AI Output")
+            # 🟢 SIDE BY SIDE LAYOUT
+            col1, col2 = st.columns(2)
 
-        # Step 1: Plan
-        plan = call_llm(f"Give ONLY 3 steps to solve/explain {topic}")
-        st.markdown("###  Plan")
-        st.write(plan)
+            # ========================
+            # 🔹 GEN AI COLUMN
+            # ========================
+            with col1:
+                st.markdown("## 🔹 Generative AI")
+                st.caption("⚡ Single-step output generation")
 
-        # Step 2: Execution
-        steps = plan.split("\n")[:3]
-        outputs = []
+                genai_prompt = f"Explain {topic} in 5-6 lines."
+                genai_result = call_llm(genai_prompt)
 
-        st.markdown("###  Execution")
+                st.info(genai_result)
 
-        for step in steps:
-            if step.strip() == "":
-                continue
+            # ========================
+            # 🔸 AGENTIC AI COLUMN
+            # ========================
+            with col2:
+                st.markdown("## 🔸 Agentic AI")
+                st.caption("🧠 Multi-step reasoning system")
 
-            result = call_llm(f"Explain in 2-3 lines: {step}")
-            st.write(f" {step}")
-            st.write(result)
-            outputs.append(result)
+                # Plan
+                plan = call_llm(f"Give ONLY 3 steps to solve/explain {topic}")
+                st.markdown("### 🧠 Plan")
+                st.write(plan)
 
-        # Step 3: Final summary
-        final = call_llm("Summarize in 4-5 lines:\n" + " ".join(outputs))
+                # Execution
+                steps = plan.split("\n")[:3]
+                outputs = []
 
-        st.markdown("###  Final Output")
-        st.write(final)
+                st.markdown("### ⚙️ Execution")
+
+                for step in steps:
+                    if step.strip() == "":
+                        continue
+
+                    result = call_llm(f"Explain in 2-3 lines: {step}")
+                    st.write(f"➡️ {step}")
+                    st.success(result)
+                    outputs.append(result)
+
+                # Final
+                final = call_llm("Summarize in 4-5 lines:\n" + " ".join(outputs))
+
+                st.markdown("### 🔥 Final Output")
+                st.success(final)
+
+        st.divider()
+        st.markdown("💬 *GenAI answers. Agentic AI thinks, plans, and solves.*")
