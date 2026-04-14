@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 #  API KEY
-API_KEY = "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"
+API_KEY = "your_api_key"
 
 url = "https://openrouter.ai/api/v1/chat/completions"
 
