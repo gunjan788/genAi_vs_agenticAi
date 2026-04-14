@@ -80,8 +80,7 @@ streamlit run app.py
 <img width="1908" height="824" alt="image" src="https://github.com/user-attachments/assets/656d47d6-190b-4ae2-b792-757021c846f2" />
 <img width="1834" height="791" alt="image" src="https://github.com/user-attachments/assets/f8fc6e2a-1d1d-4f8e-8694-fbbe9996b6e2" />
 <img width="1847" height="858" alt="image" src="https://github.com/user-attachments/assets/a337bc5c-ef64-4ca5-a7d9-3314588c6f35" />
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/30b35893-4688-4d27-aad5-7df0a0a281c9" />
-
+<img width="1903" height="880" alt="image" src="https://github.com/user-attachments/assets/9cdc563c-efef-4c97-aaca-8dd21fd42e92" />
 
 * Generative AI Output
 * Agentic AI Step-by-Step Output
